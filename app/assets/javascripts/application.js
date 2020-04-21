@@ -17,9 +17,18 @@
 //= require semantic-ui
 //= require_tree .
 
+// scroll_bottom is for messagers in chatbox to be automatically scrolled to the bottom, add 'scroll_bottom()' in this file after turbolinks
+scroll_bottom = function(){
+  if ($('#messages').length > 0) {
+    $('#messages').scrollTop($('#messages')[0].scrollHeight);
+  }
+}
+
 $(document).on('turbolinks:load', function() {
   $('.ui.dropdown').dropdown();
   $('.message .close').on('click', function() {
     $(this).closest('.message').transition('fade');
   });
+// right here add scroll_bottom, now add it to .coffee file, in this case chatroom.coffee
+  scroll_bottom();
 })
