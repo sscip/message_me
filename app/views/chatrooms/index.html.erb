@@ -7,31 +7,18 @@
     <div class="ui fluid raised card chatbox">
       <div class="content">
         <div class="ui feed">
-          <div class="ui comments">
-            <div class="comment">
-              <div class="text">
-                <div class="content">
-                  <% @messages.each do |message| %>
-                    <div class="ui inline">
-                      <em><%= message.user.username %></em>>
-                      <%= message.body %>
-                    </div>
-                  <% end %>
-                </div>
-              </div>
-            </div>
-          </div>
+          <%= render @messages %>
         </div>
       </div>
       <div class="extra content">
-        <form class="ui reply form">
+        <%= form_for(@message, html: {class: "ui reply form"}, role: "form", url: message_path) do |f| %>
           <div class="field">
             <div class="ui fluid icon input">
-              <input type="text" placeholder="Enter a message...">
-              <i class="bordered inverted blue edit outline icon"></i>
+              <%= f.text_field :body %>
+              <%= f.button '<i class="bordered inverted blue edit outline icon"></i>'.html_safe %>
             </div>
           </div>
-        </form>
+        <% end %>
       </div>
     </div>
   </div>
